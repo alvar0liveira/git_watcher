@@ -47,19 +47,6 @@ func main() {
 	flag.IntVar(&cadence, "cadence", 1, "Cadence of the commits in minutes. Can be 0 (0.5m), 1 (1m) or 2 (2m).")
 	flag.Parse()
 
-	var cadenceDuration time.Duration
-
-	switch cadence {
-	case RAPIDCOMMIT:
-		cadenceDuration = 30 * time.Second
-	case NORMALCOMMIT:
-		cadenceDuration = 1 * time.Minute
-	case SLOWCOMMIT:
-		cadenceDuration = 2 * time.Minute
-	default:
-		cadenceDuration = 1 * time.Minute
-	}
-
 	isRepo, err := isGitRepo(path)
 	if err != nil {
 		println(err)
@@ -106,7 +93,7 @@ func main() {
 		}
 	}()
 
-	ticker := time.NewTicker(cadenceDuration)
+	ticker := time.NewTicker(ConvertToDuration(cadence))
 	defer ticker.Stop()
 
 	for {
@@ -197,4 +184,17 @@ func CommitChanges(repo *git.Repository, commitOptions *git.CommitOptions) (comm
 	}
 
 	return commit, nil
+}
+
+func ConvertToDuration(cadence int) time.Duration {
+	switch cadence {
+	case RAPIDCOMMIT:
+		return 30 * time.Second
+	case NORMALCOMMIT:
+		return 1 * time.Minute
+	case SLOWCOMMIT:
+		return 2 * time.Minute
+	default:
+		return 1 * time.Minute
+	}
 }
