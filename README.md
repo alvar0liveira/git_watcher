@@ -10,7 +10,7 @@ To use create a env file where the repository is going to be:
 
 ```env
 author_name="Your Name"
-autor_email="Your Email"
+author_email="Your Email"
 
 ```
 
