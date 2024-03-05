@@ -1,6 +1,6 @@
 module github.com/alvar0liveira/git_watcher/v2
 
-go 1.21.7
+go 1.21
 
 require github.com/go-git/go-git/v5 v5.11.0
 
