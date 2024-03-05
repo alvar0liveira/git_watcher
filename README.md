@@ -1,4 +1,6 @@
 # Git Watcher
+[![Go](https://github.com/alvar0liveira/git_watcher/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/alvar0liveira/git_watcher/actions/workflows/go.yml)
+
 
 A command line utility for automatically commit changes to a repo.
 
